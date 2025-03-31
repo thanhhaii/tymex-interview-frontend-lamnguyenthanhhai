@@ -23,7 +23,7 @@ const eslintConfig = [
       'no-unused-vars': 'off',
       'semi': ['warn', 'always'],
       'quotes': ['error', 'single'],
-      'indent': ['warn', 2],
+      'indent': ['warn', 4],
       'comma-dangle': ['error', 'always-multiline'],
       'no-multiple-empty-lines': ['error', { 'max': 1 }],
       '@typescript-eslint/no-unused-vars': [

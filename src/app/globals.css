@@ -8,50 +8,26 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* Reset CSS */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-html {
-  font-size: 100%;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
+@theme {
+    --font-sans: "Inter", sans-serif;
+    --color-secondary: #FBC625;
 }
 
-body {
-  min-height: 100vh;
-  scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-}
+@utility text-linear-gradient {
+    background: linear-gradient(59deg, #DA458F, #DA34DD);
+    color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-input, button, textarea, select {
-  font: inherit;
-}
-
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    &::after {
+        content: '';
+        position: absolute;
+        background: linear-gradient(59deg, #DA458F, #DA34DD);
+        width: 16px;
+        height: 2px;
+        bottom: 0;
+        left: 20px;
+    }
 }
