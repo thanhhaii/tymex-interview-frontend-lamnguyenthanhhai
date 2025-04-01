@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import Footer from './Footer';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -45,9 +46,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     {item.name}
                 </Link>
             )}
-
             fixedHeader
             title=""
+            footerRender={() => (<Footer />)}
             layout="top"
             logo={false}
             avatarProps={{

@@ -13,6 +13,7 @@ body {
 @theme {
     --font-sans: "Inter", sans-serif;
     --color-secondary: #FBC625;
+    --color-gray: #89888B;
 }
 
 @utility text-linear-gradient {
@@ -30,4 +31,16 @@ body {
         bottom: 0;
         left: 20px;
     }
+}
+
+@utility bg-linear-gradient {
+    background: linear-gradient(59deg, #DA458F, #DA34DD);
+}
+
+@utility bg-linear-gradient-inactive {
+    background: linear-gradient(59deg, rgba(218, 69, 143, 0.4), rgba(218, 52, 221, 0.4));
+}
+
+.ant-slider-tooltip .ant-tooltip-arrow::before {
+    background: linear-gradient(59deg, #DA458F, #DA34DD) !important;
 }

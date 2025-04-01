@@ -1,7 +1,10 @@
 'use client';
 
+import { ProProvider, useToken } from '@ant-design/pro-components';
 import { App, ConfigProvider, theme } from 'antd';
 import { createStyles } from 'antd-style';
+import { defaultTheme } from 'antd/es/theme/context';
+import vi_VN from 'antd/locale/vi_VN';
 
 const useStyle = createStyles(({ prefixCls, css }) => ({
     linearGradientButton: css`
@@ -31,6 +34,7 @@ const useStyle = createStyles(({ prefixCls, css }) => ({
 export default function AppConfigProvider({ children }: { children: React.ReactNode }) {
     const { styles } = useStyle();
     return (
+
         <ConfigProvider
             button={{
                 className: styles.linearGradientButton,
@@ -42,6 +46,13 @@ export default function AppConfigProvider({ children }: { children: React.ReactN
                 },
                 algorithm: theme.darkAlgorithm,
             }}
+            input={{
+                classNames: {
+                    wrapper: 'bg-transparent',
+                    affixWrapper: 'bg-transparent',
+                },
+            }}
+            locale={vi_VN}
         >
             <App>
                 {children}
