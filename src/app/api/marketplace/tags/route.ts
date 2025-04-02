@@ -6,7 +6,7 @@ export async function GET() {
         {
             id: 1,
             name: 'All',
-            slug: 'all',
+            slug: '',
         },
         {
             id: 2,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { agents } from './mockData';
+import { agentsMockData } from './mockData';
 
 export async function GET(request: NextRequest) {
     try {
@@ -14,13 +14,12 @@ export async function GET(request: NextRequest) {
         const theme = searchParams.get('theme');
         const time = searchParams.get('time');
         const priceOrder = searchParams.get('priceOrder');
-
-        let filteredAgents = [...agents];
+        const tag = searchParams.get('tag');
+        let filteredAgents = agentsMockData;
 
         if (search) {
             filteredAgents = filteredAgents.filter(agent =>
-                agent.name.toLowerCase().includes(search.toLowerCase()) ||
-                agent.owner.name.toLowerCase().includes(search.toLowerCase()),
+                JSON.stringify(agent).toLowerCase().includes(search.toLowerCase()),
             );
         }
 
@@ -32,15 +31,21 @@ export async function GET(request: NextRequest) {
         }
 
         if (tier) {
-            filteredAgents = filteredAgents.filter(agent => agent.tier === tier);
+            filteredAgents = filteredAgents.filter(agent => agent.tier.toLowerCase().includes(tier.toLowerCase()));
         }
 
         if (theme) {
-            filteredAgents = filteredAgents.filter(agent => agent.theme === theme);
+            filteredAgents = filteredAgents.filter(agent => agent.theme.toLowerCase().includes(theme.toLowerCase()));
         }
 
         if (time) {
-            filteredAgents = filteredAgents.filter(agent => agent.time === time);
+            filteredAgents.sort((a, b) => {
+                if (priceOrder === 'asc') {
+                    return a.time - b.time;
+                } else {
+                    return b.time - a.time;
+                }
+            });
         }
 
         if (priceOrder) {
@@ -51,6 +56,10 @@ export async function GET(request: NextRequest) {
                     return b.price - a.price;
                 }
             });
+        }
+
+        if (tag) {
+            filteredAgents = filteredAgents.filter(agent => agent.tag.toLowerCase().includes(tag.toLowerCase()));
         }
 
         const paginatedAgents = filteredAgents.slice(offset, offset + size);
