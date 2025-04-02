@@ -11,6 +11,7 @@ export default function CustomTag({ label, onPress, isActive = false }: CustomTa
     return (
         <div className={classNames(
             'px-4 py-[10px] rounded-[4px] inline-block',
+            'cursor-pointer',
             {
                 'bg-linear-gradient-inactive': !isActive,
                 'bg-linear-gradient': isActive,

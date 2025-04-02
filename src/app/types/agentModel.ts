@@ -1,20 +1,16 @@
-import { AgentTier } from '@app/constants/enums';
-
-export type AgentModel = {
+export interface Agent {
     id: number;
     name: string;
     price: number;
-    tier: AgentTier;
+    tier: 'EPIC' | 'RARE' | 'LEGENDARY' | 'MYTHIC';
     theme: string;
-    time: number;
+    time: string;
     image: string;
     owner: {
         name: string;
         avatar: string;
     };
-    tag: string;
-    backgroundColor?: string;
-};
+}
 
 export interface HighlightAgentType {
     id: number;

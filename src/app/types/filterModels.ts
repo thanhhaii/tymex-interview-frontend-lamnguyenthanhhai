@@ -1,4 +1,4 @@
-import { AgentModel } from './agentModel';
+import { Agent } from './agentModel';
 
 export interface TagItem {
     id: number;
@@ -19,7 +19,7 @@ export interface SearchFormValues {
 export interface AgentResponse {
     success: boolean;
     data: {
-        items: AgentModel[];
+        items: Agent[];
         total: number;
         offset: number;
         size: number;
