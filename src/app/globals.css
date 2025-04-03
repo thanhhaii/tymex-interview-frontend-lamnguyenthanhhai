@@ -12,8 +12,15 @@ body {
 
 @theme {
     --font-sans: "Inter", sans-serif;
+    --font-secondary: var(--font-drone-ranger), sans-serif;
     --color-secondary: #FBC625;
     --color-gray: #89888B;
+
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1600px;
 }
 
 @utility text-linear-gradient {
@@ -57,3 +64,12 @@ body {
 .ant-slider-tooltip .ant-tooltip-arrow::before {
     background: linear-gradient(59deg, #DA458F, #DA34DD) !important;
 }
+
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+

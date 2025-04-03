@@ -20,4 +20,6 @@ export interface HighlightAgentType {
     id: number;
     name: string;
     image: string;
+    isHighlight?: boolean;
+    highlightImage?: string;
 }

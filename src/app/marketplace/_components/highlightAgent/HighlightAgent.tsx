@@ -8,7 +8,7 @@ type HighlightAgentProps = {
 
 export default function HighlightAgent({ name, image }: HighlightAgentProps) {
     return (
-        <div className='w-[200px]'>
+        <div className='w-[200px] mb-5 xl:mb-0'>
             <div className="relative">
                 <Image
                     src={image}
@@ -28,7 +28,7 @@ export default function HighlightAgent({ name, image }: HighlightAgentProps) {
                     />
                 </div>
             </div>
-            <div className='mt-7'>
+            <div className='mt-3 xl:mt-7'>
                 <p className='text-lg text-black font-bold uppercase text-center'>{name}</p>
             </div>
         </div>
