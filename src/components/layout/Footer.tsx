@@ -9,7 +9,7 @@ export default function Footer() {
         <footer className="bg-black !text-white py-10 px-4 md:px-8 md:pt-15">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-7 gap-8">
-                    <div className='md:col-span-2'>
+                    <div className='md:col-span-4 xl:col-span-2'>
                         <h3 className="font-bold mb-8 text-xl tracking-wider">
                             NAVIGATION
                         </h3>
@@ -70,7 +70,7 @@ export default function Footer() {
                             </Link>
                         </div>
                     </div>
-                    <div className='md:col-span-2'>
+                    <div className='md:col-span-3 xl:col-span-2'>
                         <h3 className="font-bold mb-8 text-xl tracking-wider">
                             CONTACT US
                         </h3>
@@ -85,7 +85,7 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
-                    <div className='md:col-span-3'>
+                    <div className='md:col-span-7 xl:col-span-3'>
                         <h3 className="font-bold mb-8 text-xl tracking-wider">
                             SUBSCRIBE TO RECEIVE OUR LATEST UPDATE
                         </h3>

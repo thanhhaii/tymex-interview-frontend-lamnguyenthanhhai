@@ -7,7 +7,7 @@ type AgentCardProps = {
     loading: boolean;
 }
 
-export default function AgentCard({ agent, loading }: AgentCardProps) {
+export default function AgentCard({ agent }: AgentCardProps) {
     return (
         <div className='max-w-[267px] p-4 rounded-[10px] bg-[rgba(26,26,26,0.6)]'>
             <div className='relative w-full aspect-square bg-red-200 flex flex-col rounded-[4px]' style={{
@@ -27,11 +27,11 @@ export default function AgentCard({ agent, loading }: AgentCardProps) {
                 />
             </div>
             <div className='mt-6'>
-                <div className='flex justify-between'>
+                <div className='flex justify-between flex-col lg:items-center lg:flex-row'>
                     <p className='font-semibold text-[16px]'>
                         {agent.name}
                     </p>
-                    <p className='font-medium text-sm'>
+                    <p className='font-medium text-xs text-gray-400 lg:text-sm'>
                         {agent.price.toFixed(2)} ETH
                     </p>
                 </div>

@@ -18,12 +18,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 marginTop: -56,
             }}
             location={{ pathname }}
+            headerRender={(_, defaultDom: React.ReactNode) => {
+                return React.cloneElement(defaultDom as React.ReactElement, {
+                    className: 'xxl:px-[160px]',
+                } as any);
+            }}
             stylish={{
                 header: (_, ...rest) => ({
                     ...rest,
                     backgroundColor: 'rgba(23, 22, 26, 0.7)',
                     border: 'none',
-                    paddingInline: '160px',
                     paddingBlock: 22,
                     height: 84,
                 }),

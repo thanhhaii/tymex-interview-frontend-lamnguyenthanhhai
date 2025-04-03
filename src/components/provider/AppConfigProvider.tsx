@@ -1,9 +1,7 @@
 'use client';
 
-import { ProProvider, useToken } from '@ant-design/pro-components';
 import { App, ConfigProvider, theme } from 'antd';
 import { createStyles } from 'antd-style';
-import { defaultTheme } from 'antd/es/theme/context';
 import vi_VN from 'antd/locale/vi_VN';
 
 const useStyle = createStyles(({ prefixCls, css }) => ({

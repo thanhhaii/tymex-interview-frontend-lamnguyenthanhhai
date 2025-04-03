@@ -6,6 +6,8 @@ import localFont from 'next/font/local';
 
 // import '@app/styles/reset.css';
 import './globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const inter = Inter({
     subsets: ['latin'],
