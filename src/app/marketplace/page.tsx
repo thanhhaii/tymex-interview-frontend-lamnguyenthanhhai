@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Col, Row, Button } from 'antd';
+import { Col, Row, Button, Empty } from 'antd';
 import SearchForm from './_components/searchForm/SearchForm';
 import AgentCard from '@app/components/ui/agentCard/AgentCard';
 import TagList from './_components/searchForm/TagList';
@@ -76,6 +76,15 @@ export default function Marketplace() {
                                             <AgentCard agent={agent} loading={loading} />
                                         </Col>
                                     ))}
+                                    {agents.length === 0 && (
+                                        <Col span={24} className='text-center mt-20'>
+                                            <Empty description={
+                                                <h3 className='text-2xl font-bold'>
+                                                    No agents found
+                                                </h3>
+                                            } />
+                                        </Col>
+                                    )}
                                 </Row>
                             </Col>
                             {hasMore && (
