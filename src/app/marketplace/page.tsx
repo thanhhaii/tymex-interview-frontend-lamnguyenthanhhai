@@ -1,51 +1,43 @@
 'use client';
 
 import Image from 'next/image';
-import { Col, Row } from 'antd';
+import { Col, Row, Button } from 'antd';
 import SearchForm from './_components/searchForm/SearchForm';
 import AgentCard from '@app/components/ui/agentCard/AgentCard';
 import TagList from './_components/searchForm/TagList';
 import ListHighlightAgent from './_components/highlightAgent/ListHighlightAgent';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SearchFormValues, AgentResponse } from '@app/types/filterModels';
-import { AgentModel } from '@app/types/agentModel';
 import { buildQueryString } from '@app/utils/urlUtils';
+import { usePaginatedFetch } from '@app/hooks/usePaginatedFetch';
 
 export default function Marketplace() {
-    const [agents, setAgents] = useState<AgentModel[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [selectedTag, setSelectedTag] = useState<string>('');
+    const [searchParams, setSearchParams] = useState<SearchFormValues>({
+        tag: '',
+    });
 
     const fetchAgents = useCallback(async (searchParams: SearchFormValues = {}) => {
-        setLoading(true);
-        try {
-            const response = await fetch(`/api/marketplace/agents${buildQueryString({
-                ...searchParams,
-                tag: selectedTag,
-                offset: 0,
-                size: 50,
-            })}`);
-            const data: AgentResponse = await response.json();
+        const response = await fetch(`/api/marketplace/agents${buildQueryString(searchParams)}`);
+        const data: AgentResponse = await response.json();
 
-            if (data.success) {
-                setAgents(data.data.items);
-            }
-        } finally {
-            setLoading(false);
-        }
-    }, [selectedTag]);
+        return data;
+    }, []);
+
+    const { data: agents, loading, hasMore, onGetNextPage } = usePaginatedFetch({
+        apiFn: fetchAgents,
+        initialParams: searchParams,
+    });
 
     const handleSearch = useCallback((values: SearchFormValues) => {
-        fetchAgents(values);
-    }, [fetchAgents]);
+        setSearchParams(values);
+    }, []);
 
     const handleTagSelect = useCallback((tag: string) => {
-        setSelectedTag(tag === selectedTag ? '' : tag);
-    }, [selectedTag]);
-
-    useEffect(() => {
-        fetchAgents();
-    }, [selectedTag]);
+        setSearchParams(state => ({
+            ...state,
+            tag: tag === state.tag ? '' : tag,
+        }));
+    }, []);
 
     return (
         <section className='relative min-h-screen w-full overflow-hidden'>
@@ -106,13 +98,30 @@ export default function Marketplace() {
                     <Col span={24} lg={18}>
                         <Row gutter={[30, 30]}>
                             <Col span={24}>
-                                <TagList onTagSelect={handleTagSelect} selectedTag={selectedTag} />
+                                <TagList onTagSelect={handleTagSelect} selectedTag={searchParams.tag} />
                             </Col>
-                            {agents.map((agent) => (
-                                <Col key={agent.id} span={12} md={6}>
-                                    <AgentCard agent={agent} loading={loading} />
+                            <Col span={24}>
+                                <Row
+                                    gutter={[30, 30]}
+                                    className='scrollbar-custom'
+                                    style={{
+                                        maxHeight: '2000px',
+                                        overflowY: 'auto',
+                                    }}>
+                                    {agents.map((agent) => (
+                                        <Col key={agent.id} span={12} md={6}>
+                                            <AgentCard agent={agent} loading={loading} />
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </Col>
+                            {hasMore && (
+                                <Col span={24} className='text-center'>
+                                    <Button type='primary' className='!py-6 !px-40' onClick={onGetNextPage}>
+                                        View more
+                                    </Button>
                                 </Col>
-                            ))}
+                            )}
                         </Row>
                     </Col>
                 </Row>
