@@ -19,7 +19,7 @@ function TagList({ onTagSelect, selectedTag }: TagListProps) {
     }, []);
 
     return (
-        <div className='flex gap-x-6'>
+        <div className='flex gap-x-6 overflow-x-auto scrollbar-custom w-full pb-3'>
             {tags.map((tag) => (
                 <CustomTag
                     key={tag.id}

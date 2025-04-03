@@ -41,6 +41,19 @@ body {
     background: linear-gradient(59deg, rgba(218, 69, 143, 0.4), rgba(218, 52, 221, 0.4));
 }
 
+@utility scrollbar-custom {
+    &::-webkit-scrollbar {
+        width: 6px;
+        background: #D0D0D0;
+        border-radius: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #FFCC21;
+    }
+}
+
 .ant-slider-tooltip .ant-tooltip-arrow::before {
     background: linear-gradient(59deg, #DA458F, #DA34DD) !important;
 }
